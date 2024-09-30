@@ -16,3 +16,10 @@ window.onload = function() {
         loader.classList.add('hidden');
     }, 2000);
 };
+function openFolder() {
+    document.getElementById('folderOverlay').classList.remove('hidden');
+}
+
+function closeFolder() {
+    document.getElementById('folderOverlay').classList.add('hidden');
+}

@@ -1,107 +1,111 @@
-* {
+body, html {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'DM Sans', sans-serif;
-    background-color: #ffffff;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    overflow: hidden;
+    font-family: 'DM Sans', sans-serif;
 }
 
-.iphone-frame {
-    background-image: url('/mnt/data/Zeichenfläche 1.png');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    position: relative;
-    height: 900px;
+.iphone-container {
+    background: url('iphon12007.png') no-repeat center;
     width: 1440px;
+    height: 900px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .screen {
-    position: absolute;
+    width: 363px;
+    height: 538px;
+    position: relative;
     top: 167px;
     left: 557px;
-    height: 538px;
-    width: 363px;
-    background-color: white;
-    border-radius: 40px;
-    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.2);
+    background: transparent;
+}
+
+.homescreen {
+    display: grid;
+    grid-template-rows: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.app-row {
     display: flex;
-    flex-direction: column;
     justify-content: space-between;
 }
 
-.apps {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    justify-items: center;
-    padding: 20px 0;
+.app {
+    font-size: 40px;
+    transition: all 0.2s ease-in-out;
 }
 
-.app-icon {
-    text-align: center;
-    cursor: pointer;
+.app:hover {
+    box-shadow: 0 2px 5px black;
 }
 
-.app-icon span {
-    font-size: 48px;
+.app:active {
+    transform: scale(0.9);
+    opacity: 0.7;
 }
 
-.app-icon p {
-    margin-top: 5px;
-    font-size: 16px;
-    color: #333;
-}
-
-/* Taskbar */
 .taskbar {
-    background: linear-gradient(to top, #d1d1d6, #fff);
-    padding: 15px 0;
+    background: linear-gradient(to bottom, #eee, #fff);
     display: flex;
-    justify-content: space-evenly;
-    border-top: 1px solid #d1d1d6;
+    justify-content: space-between;
+    padding: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
 }
 
-/* Loader styles */
-.overlay {
+.taskbar .app {
+    font-size: 45px;
+    text-align: center;
+}
+
+.taskbar .app span {
+    display: block;
+    font-size: 12px;
+}
+
+.folder-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(255, 255, 255, 1);
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 9999;
-    opacity: 1;
-    transition: opacity 2s;
+    z-index: 10000;
 }
 
-#loadingText {
-    font-family: 'Raven Star Script', cursive;
-    font-size: 2em;
+.folder-content {
+    background-color: white;
+    width: 250px;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    animation: scaleIn 0.3s ease-in-out;
+}
+
+@keyframes scaleIn {
+    0% {
+        transform: scale(0.7);
+    }
+    100% {
+        transform: scale(1);
+    }
 }
 
 .hidden {
-    opacity: 0;
-    transition: opacity 0.2s ease-out;
     display: none;
-}
-
-/* Center the iPhone frame responsively */
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    overflow: hidden;
 }
