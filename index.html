@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>iPhone 2007 Website</title>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <title>iPhone 2007 Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Loader -->
@@ -13,36 +13,96 @@
         <p id="loadingText">Loading...</p>
     </div>
 
-    <div class="iphone-container">
-        <div class="screen">
-            <div class="homescreen">
-                <div class="app-row">
-                    <div class="app" title="Balenciaga Campaign">👪</div>
-                    <div class="app" title="Photography Work">📷</div>
-                    <div class="app" title="Digital Archiving">💽</div>
-                    <div class="app folder" title="Clients" onclick="openFolder()">🗂️</div>
+    <div class="iphone-frame">
+        <div class="blur-container"> <!-- New container for blur effect -->
+            <div class="screen">
+            <!-- App icons with subtitles -->
+            <div class="apps">
+                <div class="app-icon" title="Balenciaga Campaign">
+                    <span>👪</span>
+                    <p>Balenciaga Campaign</p>
                 </div>
-                <!-- More app rows as required -->
+                <div class="app-icon" title="Gucci Lookbook">
+                    <span>📷</span>
+                    <p>Gucci Lookbook</p>
+                </div>
+                <div class="app-icon" title="Versace Editorial">
+                    <span>💽</span>
+                    <p>Versace Editorial</p>
+                </div>
+                <div class="app-icon" title="LV Pop-up Store">
+                    <span>🏧</span>
+                    <p>LV Pop-up Store</p>
+                </div>
+                <div class="app-icon" title="YSL SS Collection">
+                    <span>🌐</span>
+                    <p>YSL SS Collection</p>
+                </div>
+                <div class="app-icon" title="Vogue Shoot">
+                    <span>🎦</span>
+                    <p>Vogue Shoot</p>
+                </div>
+                <div class="app-icon" title="Prada Campaign">
+                    <span>👜</span>
+                    <p>Prada Campaign</p>
+                </div>
+                <div class="app-icon" title="Dior Event">
+                    <span>🛍️</span>
+                    <p>Dior Event</p>
+                </div>
+
+                <!-- Folder preview -->
+                <div class="folder-preview" onclick="openFolder(event)">
+                    <div class="preview-icons">
+                        <span>🐶</span>
+                        <span>🐱</span>
+                        <span>🐯</span>
+                        <span>🐸</span>
+                    </div>
+                    <p>Animal Clients</p>
+                </div>
             </div>
 
             <!-- Taskbar -->
             <div class="taskbar">
-                <div class="app" title="About Me">🧰<span>About Me</span></div>
-                <div class="app" title="Contact">💌<span>Contact</span></div>
-                <div class="app" title="Projects">🌐<span>Projects</span></div>
-                <div class="app" title="Moods">📟<span>Moods</span></div>
+                <div class="app-icon" title="About">
+                    <span>🧰</span>
+                </div>
+                <div class="app-icon" title="Contact">
+                    <span>💌</span>
+                </div>
+                <div class="app-icon" title="Projects">
+                    <span>🌐</span>
+                </div>
+                <div class="app-icon" title="Moods">
+                    <span>📟</span>
+                </div>
             </div>
         </div>
+    </div>
 
-        <!-- Folder overlay -->
-        <div id="folderOverlay" class="folder-overlay hidden">
-            <div class="folder-content">
-                <div class="app-row">
-                    <div class="app" title="Apple Clients">🐶</div>
-                    <div class="app" title="Nike Clients">🐱</div>
-                    <div class="app" title="Gucci Clients">🐯</div>
+    <!-- Folder overlay -->
+    <div id="folderOverlay" class="folder-overlay">
+        <div class="folder-content">
+            <div class="app-row">
+                <div class="app-icon">
+                    <span title="Apple Clients">🐶</span>
+                    <p>Apple Clients</p>
                 </div>
-                <!-- Add more rows for more clients -->
+                <div class="app-icon">
+                    <span title="Nike Clients">🐱</span>
+                    <p>Nike Clients</p>
+                </div>
+            </div>
+            <div class="app-row">
+                <div class="app-icon">
+                    <span title="Gucci Clients">🐯</span>
+                    <p>Gucci Clients</p>
+                </div>
+                <div class="app-icon">
+                    <span title="Other Clients">🐸</span>
+                    <p>Other Clients</p>
+                </div>
             </div>
         </div>
     </div>

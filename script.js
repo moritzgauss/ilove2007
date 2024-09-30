@@ -13,13 +13,21 @@ window.onload = function() {
     // Fading out loader after 2 seconds
     setTimeout(() => {
         clearInterval(typingEffect);
-        loader.classList.add('hidden');
+        loader.classList.add('hidden'); // Hide loader after 2 seconds
     }, 2000);
 };
-function openFolder() {
-    document.getElementById('folderOverlay').classList.remove('hidden');
+
+function openFolder(event) {
+    event.stopPropagation(); // Prevent triggering the document click
+    document.getElementById('folderOverlay').style.display = 'flex'; // Show folder overlay
 }
 
 function closeFolder() {
-    document.getElementById('folderOverlay').classList.add('hidden');
+    document.getElementById('folderOverlay').style.display = 'none'; // Hide folder overlay
 }
+
+// Close folder when clicking outside of it
+document.getElementById('folderOverlay').addEventListener('click', closeFolder);
+document.querySelector('.folder-content').addEventListener('click', function(event) {
+    event.stopPropagation(); // Prevent closing the folder when clicking inside
+});
