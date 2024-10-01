@@ -32,14 +32,12 @@
             height: 900px;
             width: 1440px;
             display: flex; /* Allow children to be positioned */
-            overflow: hidden; /* Hide excess on the sides */
         }
 
         .screen {
             position: absolute;
             top: 167px;
-            left: 50%; /* Center the screen horizontally */
-            transform: translateX(-50%); /* Adjust position back to center */
+            left: 539px;
             height: 538px;
             width: 363px;
             background-color: transparent;
@@ -188,6 +186,25 @@
                 transform: scale(1);
             }
         }
+
+        /* RESPONSIVENESS */
+        @media (max-width: 768px) {
+            .iphone-frame {
+                display: none; /* Hide on mobile */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .iphone-frame {
+                display: none; /* Hide on smaller screens */
+            }
+            .screen {
+                top: 12vw;
+                left: 10vw;
+                width: 40vw;
+                height: auto;
+            }
+        }
     </style>
 </head>
 <body>
@@ -243,70 +260,48 @@
                     <p>Animal Clients</p>
                 </div>
             </div>
+            
+            <!-- Taskbar -->
             <div class="taskbar">
-                <p>Taskbar Item 1</p>
-                <p>Taskbar Item 2</p>
-                <p>Taskbar Item 3</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Folder overlay -->
-    <div id="folderOverlay" class="folder-overlay">
-        <div class="folder-content">
-            <h2>Animal Clients</h2>
-            <div class="app-row">
-                <div class="app-icon">
-                    <span>🐶</span>
-                    <p>Dog Brand</p>
+                <div class="app-icon" title="About">
+                    <span>🧰</span>
                 </div>
-                <div class="app-icon">
-                    <span>🐱</span>
-                    <p>Cat Brand</p>
+                <div class="app-icon" title="Contact">
+                    <span>💌</span>
                 </div>
-            </div>
-            <div class="app-row">
-                <div class="app-icon">
-                    <span>🐯</span>
-                    <p>Tiger Brand</p>
+                <div class="app-icon" title="Projects">
+                    <span>🌐</span>
                 </div>
-                <div class="app-icon">
-                    <span>🐸</span>
-                    <p>Frog Brand</p>
+                <div class="app-icon" title="Moods">
+                    <span>📟</span>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        const loader = document.getElementById('loader');
-        const iphoneFrame = document.getElementById('iphoneFrame');
-        const folderOverlay = document.getElementById('folderOverlay');
+        // Hide loader after 2 seconds
+        window.addEventListener("load", function () {
+            setTimeout(function () {
+                document.getElementById("loader").classList.add("hidden");
+            }, 2000);
+        });
 
-        // Simulate loading
-        window.onload = function () {
-            loader.style.opacity = '0';
-            setTimeout(() => {
-                loader.style.display = 'none';
-            }, 2000); // Match the transition time
-        };
-
+        // Folder interaction
         function openFolder(event) {
-            event.stopPropagation(); // Prevent triggering the click on the screen
-            folderOverlay.style.display = 'flex'; // Show the folder overlay
-            iphoneFrame.querySelector('.screen').classList.add('blurred'); // Blur the screen
+            event.stopPropagation();
+            const folderOverlay = document.querySelector(".folder-overlay");
+            const screen = document.querySelector(".screen");
+            folderOverlay.style.display = "flex";
+            screen.classList.add("blurred");
         }
 
-        // Close folder on overlay click
-        folderOverlay.addEventListener('click', () => {
-            folderOverlay.style.display = 'none';
-            iphoneFrame.querySelector('.screen').classList.remove('blurred'); // Remove blur
-        });
-
-        // Prevent closing when clicking inside the folder
-        folderOverlay.querySelector('.folder-content').addEventListener('click', (e) => {
-            e.stopPropagation();
-        });
+        function closeFolder() {
+            const folderOverlay = document.querySelector(".folder-overlay");
+            const screen = document.querySelector(".screen");
+            folderOverlay.style.display = "none";
+            screen.classList.remove("blurred");
+        }
     </script>
 </body>
 </html>
