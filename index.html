@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>iLove 2007 Creative DIRECTION Agency</title> <!-- Updated Title -->
-    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Apple_Computer_Logo_rainbow.svg/1000px-Apple_Computer_Logo_rainbow.svg.png" type="image/png"> <!-- Favicon -->
+    <title>iLove 2007 Creative DIRECTION Agency</title>
+    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Apple_Computer_Logo_rainbow.svg/1000px-Apple_Computer_Logo_rainbow.svg.png" type="image/png"> 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap">
     <style>
         * {
@@ -15,12 +15,12 @@
 
         body {
             font-family: 'DM Sans', sans-serif;
-            background-color: #000000; /* Updated to black */
+            background-color: #000; /* Ensure black background */
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            overflow: hidden; /* Prevent scrolling */
+            overflow: hidden;
         }
 
         .iphone-frame {
@@ -31,7 +31,7 @@
             position: relative;
             height: 900px;
             width: 1440px;
-            display: flex; /* Allow children to be positioned */
+            display: flex;
         }
 
         .screen {
@@ -41,11 +41,9 @@
             height: 538px;
             width: 363px;
             background-color: transparent;
-            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.2);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: all 0.3s ease;
         }
 
         .apps {
@@ -74,7 +72,7 @@
         .app-icon p {
             margin-top: 5px;
             font-size: 16px;
-            color: #333;
+            color: #fff;
         }
 
         /* Taskbar */
@@ -113,7 +111,7 @@
         #loadingText {
             font-family: 'Raven Star Script', cursive;
             font-size: 2em;
-            text-align: center; /* Center the text */
+            text-align: center;
         }
 
         .hidden {
@@ -154,7 +152,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            display: none; /* Initially hidden */
+            display: none;
             justify-content: center;
             align-items: center;
             z-index: 10000;
@@ -190,19 +188,22 @@
         /* RESPONSIVENESS */
         @media (max-width: 768px) {
             .iphone-frame {
-                display: none; /* Hide on mobile */
+                display: none; /* Hide the iPhone frame on mobile */
+            }
+            .screen {
+                position: relative;
+                width: 80%;
+                height: auto;
+                margin: auto;
+                top: 0;
+                left: 0;
+                background-color: transparent;
             }
         }
 
         @media (max-width: 480px) {
-            .iphone-frame {
-                display: none; /* Hide on smaller screens */
-            }
             .screen {
-                top: 12vw;
-                left: 10vw;
-                width: 40vw;
-                height: auto;
+                width: 90vw;
             }
         }
     </style>
