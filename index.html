@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>iLove 2007 Portfolio</title>
+    <title>iLove 2007 Creative DIRECTION Agency</title> <!-- Updated Title -->
+    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Apple_Computer_Logo_rainbow.svg/1000px-Apple_Computer_Logo_rainbow.svg.png" type="image/png"> <!-- Favicon -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap">
     <style>
         * {
@@ -30,6 +31,7 @@
             position: relative;
             height: 900px;
             width: 1440px;
+            display: none; /* Hide initially */
         }
 
         .screen {
@@ -43,7 +45,7 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: filter 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         .apps {
@@ -86,38 +88,39 @@
         }
 
         @font-face {
-    font-family: 'Raven Star Script'; /* Font for the loader text */
-    src: url('https://github.com/moritzgauss/iLove2007/raw/refs/heads/main/material/Raven-Star-Script.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
+            font-family: 'Raven Star Script';
+            src: url('https://github.com/moritzgauss/iLove2007/raw/refs/heads/main/material/Raven-Star-Script.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
 
-/* Loader styles */
-.overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 1);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    opacity: 1;
-    transition: opacity 2s;
-}
+        /* Loader styles */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            opacity: 1;
+            transition: opacity 2s;
+        }
 
-#loadingText {
-    font-family: 'Raven Star Script', cursive; /* Use the Raven font */
-    font-size: 2em;
-}
+        #loadingText {
+            font-family: 'Raven Star Script', cursive;
+            font-size: 2em;
+            text-align: center; /* Center the text */
+        }
 
-.hidden {
-    opacity: 0;
-    transition: opacity 0.2s ease-out;
-    display: none;
-}
+        .hidden {
+            opacity: 0;
+            transition: opacity 0.2s ease-out;
+            display: none;
+        }
 
         /* Folder preview styling */
         .folder-preview {
@@ -151,7 +154,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            display: none;
+            display: none; /* Initially hidden */
             justify-content: center;
             align-items: center;
             z-index: 10000;
@@ -183,17 +186,43 @@
                 transform: scale(1);
             }
         }
+
+        /* RESPONSIVENESS */
+        @media (max-width: 768px) {
+            .iphone-frame {
+                width: 90vw;
+                height: auto;
+            }
+            .screen {
+                top: 15vw;
+                left: 25vw;
+                width: 45vw;
+                height: auto;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .iphone-frame {
+                width: 60vw;
+                height: auto;
+            }
+            .screen {
+                top: 12vw;
+                left: 10vw;
+                width: 40vw;
+                height: auto;
+            }
+        }
     </style>
 </head>
 <body>
     <!-- Loader -->
     <div id="loader" class="overlay">
-        <p id="loadingText">Going back to 2007...</p>
+        <p id="loadingText">Holding the world in your hands since 2k7</p>
     </div>
 
-    <div class="iphone-frame">
-        <div class="screen"> <!-- The screen container to blur -->
-            <!-- App icons with subtitles -->
+    <div class="iphone-frame" id="iphoneFrame">
+        <div class="screen">
             <div class="apps">
                 <div class="app-icon" title="Balenciaga Campaign">
                     <span>👪</span>
@@ -239,21 +268,10 @@
                     <p>Animal Clients</p>
                 </div>
             </div>
-
-            <!-- Taskbar -->
             <div class="taskbar">
-                <div class="app-icon" title="About">
-                    <span>🧰</span>
-                </div>
-                <div class="app-icon" title="Contact">
-                    <span>💌</span>
-                </div>
-                <div class="app-icon" title="Projects">
-                    <span>🌐</span>
-                </div>
-                <div class="app-icon" title="Moods">
-                    <span>📟</span>
-                </div>
+                <p>Taskbar Item 1</p>
+                <p>Taskbar Item 2</p>
+                <p>Taskbar Item 3</p>
             </div>
         </div>
     </div>
@@ -261,62 +279,74 @@
     <!-- Folder overlay -->
     <div id="folderOverlay" class="folder-overlay">
         <div class="folder-content">
+            <h2>Animal Clients</h2>
             <div class="app-row">
                 <div class="app-icon">
-                    <span title="Apple Clients">🐶</span>
-                    <p>Apple Clients</p>
+                    <span>🐶</span>
+                    <p>Dog Brand</p>
                 </div>
                 <div class="app-icon">
-                    <span title="Nike Clients">🐱</span>
-                    <p>Nike Clients</p>
+                    <span>🐱</span>
+                    <p>Cat Brand</p>
                 </div>
             </div>
             <div class="app-row">
                 <div class="app-icon">
-                    <span title="Gucci Clients">🐯</span>
-                    <p>Gucci Clients</p>
+                    <span>🐯</span>
+                    <p>Tiger Brand</p>
                 </div>
                 <div class="app-icon">
-                    <span title="Other Clients">🐸</span>
-                    <p>Other Clients</p>
+                    <span>🐸</span>
+                    <p>Frog Brand</p>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        window.onload = function() {
-    const loader = document.getElementById('loader');
-    const loadingText = document.getElementById('loadingText');
+        let loadingText = document.getElementById('loadingText');
+        let dotsCount = 0;
+        let maxDots = 3;
 
-    let typingEffect = setInterval(() => {
-        if (loadingText.textContent.length < 10) {
-            loadingText.textContent += ".";
-        } else {
-            loadingText.textContent = "Loading";
+        function updateLoadingText() {
+            let dots = '.'.repeat(dotsCount);
+            loadingText.innerText = `Holding the world in your hands since 2k7${dots}`;
+            dotsCount = (dotsCount + 1) % (maxDots + 1); // Reset after maxDots
         }
-    }, 300);
 
-    // Fading out loader after 2 seconds
-    setTimeout(() => {
-        clearInterval(typingEffect);
-        loader.classList.add('hidden'); // Hide loader after 2 seconds
-    }, 2000);
-};
+        // Typing animation setup
+        setInterval(updateLoadingText, 500); // Update every 500ms
 
+        // Simulating loading delay
+        setTimeout(() => {
+            document.getElementById('loader').classList.add('hidden');
+            document.getElementById('iphoneFrame').style.display = 'block'; // Show iPhone frame after loading
+        }, 5000); // Adjust the delay as necessary
+
+        // Open folder function
         function openFolder(event) {
-            event.preventDefault();
-            const folderOverlay = document.getElementById("folderOverlay");
-            const screen = document.querySelector('.screen');
-            folderOverlay.style.display = "flex";
-            screen.classList.add("blurred");
+            event.stopPropagation(); // Prevent click event from bubbling up
+            document.getElementById('folderOverlay').style.display = 'flex';
+            document.querySelector('.screen').classList.add('blurred'); // Blur the screen
         }
 
-        document.getElementById("folderOverlay").addEventListener("click", function(event) {
-            const screen = document.querySelector('.screen');
-            if (event.target === this) {
-                this.style.display = "none";
-                screen.classList.remove("blurred");
+        // Close folder function
+        function closeFolder() {
+            document.getElementById('folderOverlay').style.display = 'none';
+            document.querySelector('.screen').classList.remove('blurred'); // Remove blur effect
+        }
+
+        // Close folder when clicking outside of it
+        document.addEventListener('click', (event) => {
+            const folderOverlay = document.getElementById('folderOverlay');
+            const folderContent = document.querySelector('.folder-content');
+
+            // Check if the folder overlay is displayed
+            if (folderOverlay.style.display === 'flex') {
+                // If the click is outside the folder content, close the folder
+                if (!folderContent.contains(event.target) && folderOverlay.contains(event.target)) {
+                    closeFolder();
+                }
             }
         });
     </script>
