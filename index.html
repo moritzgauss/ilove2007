@@ -15,7 +15,7 @@
 
         body {
             font-family: 'DM Sans', sans-serif;
-            background-color: #ffffff;
+            background-color: #000000; /* Updated to black */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -284,6 +284,7 @@
         window.addEventListener("load", function () {
             setTimeout(function () {
                 document.getElementById("loader").classList.add("hidden");
+                document.body.style.backgroundColor = "#000"; // Ensure black background is set
             }, 2000);
         });
 
