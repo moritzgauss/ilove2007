@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>iLove 2007 Creative DIRECTION Agency</title>
-    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Apple_Computer_Logo_rainbow.svg/1000px-Apple_Computer_Logo_rainbow.svg.png" type="image/png"> 
+    <title>iLove 2007 Creative DIRECTION Agency</title> <!-- Updated Title -->
+    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Apple_Computer_Logo_rainbow.svg/1000px-Apple_Computer_Logo_rainbow.svg.png" type="image/png"> <!-- Favicon -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap">
     <style>
         * {
@@ -15,7 +15,7 @@
 
         body {
             font-family: 'DM Sans', sans-serif;
-            background-color: white; /* Ensure black background */
+            background-color: #ffffff;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -32,18 +32,20 @@
             height: 900px;
             width: 1440px;
             display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .screen {
-            position: absolute;
-            top: 167px;
-            left: 539px;
+            position: relative;
             height: 538px;
             width: 363px;
             background-color: transparent;
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.2);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            transition: all 0.3s ease;
         }
 
         .apps {
@@ -72,7 +74,7 @@
         .app-icon p {
             margin-top: 5px;
             font-size: 16px;
-            color: #fff;
+            color: #333;
         }
 
         /* Taskbar */
@@ -111,7 +113,7 @@
         #loadingText {
             font-family: 'Raven Star Script', cursive;
             font-size: 2em;
-            text-align: center;
+            text-align: center; /* Center the text */
         }
 
         .hidden {
@@ -152,7 +154,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            display: none;
+            display: none; /* Initially hidden */
             justify-content: center;
             align-items: center;
             z-index: 10000;
@@ -185,27 +187,52 @@
             }
         }
 
-        /* RESPONSIVENESS */
+        /* Responsive layout */
         @media (max-width: 768px) {
             .iphone-frame {
-                display: none; /* Hide the iPhone frame on mobile */
+                display: none; /* Hide the iPhone PNG on smaller screens */
             }
+
             .screen {
-                position: absolute;
-                width: 80%;
+                width: 90vw; /* Make the screen take up 90% of the viewport width */
                 height: auto;
-                margin: auto;
-                top: 0;
-                left: 0;
-                background-color: transparent;
+                box-shadow: none;
+            }
+
+            .apps {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 10px;
+            }
+
+            .app-icon span {
+                font-size: 32px; /* Smaller icons for mobile */
+            }
+
+            .app-icon p {
+                font-size: 14px;
+            }
+
+            .taskbar {
+                padding: 10px 0;
             }
         }
 
-        @media (max-width: 480px) {
-            .screen {
-                width: 90vw;
+        /* Centering content and cropping from sides on desktop */
+        @media (min-width: 769px) {
+            body {
+                justify-content: center;
+                align-items: center;
+                overflow: hidden;
+            }
+
+            .iphone-frame {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                overflow: hidden;
             }
         }
+
     </style>
 </head>
 <body>
@@ -261,49 +288,66 @@
                     <p>Animal Clients</p>
                 </div>
             </div>
-            
-            <!-- Taskbar -->
             <div class="taskbar">
-                <div class="app-icon" title="About">
-                    <span>🧰</span>
+                <p>Taskbar Item 1</p>
+                <p>Taskbar Item 2</p>
+                <p>Taskbar Item 3</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Folder overlay -->
+    <div id="folderOverlay" class="folder-overlay">
+        <div class="folder-content">
+            <h2>Animal Clients</h2>
+            <div class="app-row">
+                <div class="app-icon">
+                    <span>🐶</span>
+                    <p>Dog Brand</p>
                 </div>
-                <div class="app-icon" title="Contact">
-                    <span>💌</span>
+                <div class="app-icon">
+                    <span>🐱</span>
+                    <p>Cat Brand</p>
                 </div>
-                <div class="app-icon" title="Projects">
-                    <span>🌐</span>
+            </div>
+            <div class="app-row">
+                <div class="app-icon">
+                    <span>🐯</span>
+                    <p>Tiger Campaign</p>
                 </div>
-                <div class="app-icon" title="Moods">
-                    <span>📟</span>
+                <div class="app-icon">
+                    <span>🐸</span>
+                    <p>Frog Collab</p>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        // Hide loader after 2 seconds
+        // Loader functionality
         window.addEventListener("load", function () {
-            setTimeout(function () {
+            setTimeout(() => {
                 document.getElementById("loader").classList.add("hidden");
-                document.body.style.backgroundColor = "#000"; // Ensure black background is set
+                document.getElementById("iphoneFrame").style.display = "block";
             }, 2000);
         });
 
-        // Folder interaction
+        // Folder functionality
         function openFolder(event) {
             event.stopPropagation();
-            const folderOverlay = document.querySelector(".folder-overlay");
-            const screen = document.querySelector(".screen");
+            const folderOverlay = document.getElementById("folderOverlay");
             folderOverlay.style.display = "flex";
-            screen.classList.add("blurred");
+            document.querySelector('.screen').classList.add('blurred');
         }
 
-        function closeFolder() {
-            const folderOverlay = document.querySelector(".folder-overlay");
-            const screen = document.querySelector(".screen");
-            folderOverlay.style.display = "none";
-            screen.classList.remove("blurred");
-        }
+        // Close folder by clicking outside
+        document.addEventListener("click", function (event) {
+            const folderOverlay = document.getElementById("folderOverlay");
+            if (folderOverlay.style.display === "flex" && !folderOverlay.contains(event.target)) {
+                folderOverlay.style.display = "none";
+                document.querySelector('.screen').classList.remove('blurred');
+            }
+        });
     </script>
 </body>
 </html>
