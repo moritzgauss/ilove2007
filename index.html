@@ -31,13 +31,13 @@
             position: relative;
             height: 900px;
             width: 1440px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            display: none; /* Hide initially */
         }
 
         .screen {
-            position: relative;
+            position: absolute;
+            top: 167px;
+            left: 539px;
             height: 538px;
             width: 363px;
             background-color: transparent;
@@ -187,49 +187,73 @@
             }
         }
 
-        /* Responsive layout */
-        @media (max-width: 768px) {
+        /* RESPONSIVENESS */
+        @media (max-width: 480px) {
             .iphone-frame {
-                display: none; /* Hide the iPhone PNG on smaller screens */
+                width: 480px;
+                height: 300px;
+            }
+            .screen {
+                left: 10vw;
+                width: 192px;
+                height: 285px;
             }
 
-            .screen {
-                width: 90vw; /* Make the screen take up 90% of the viewport width */
-                height: auto;
-                box-shadow: none;
+            /* Scale down app icons */
+            .app-icon span {
+                font-size: 32px;
+            }
+
+            /* Scale down app text */
+            .app-icon p {
+                font-size: 12px;
+                margin-top: 3px;
             }
 
             .apps {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 10px;
+                gap: 12px;
+                padding: 10px 0;
             }
 
-            .app-icon span {
-                font-size: 32px; /* Smaller icons for mobile */
-            }
-
-            .app-icon p {
-                font-size: 14px;
-            }
-
+            /* Taskbar adjustments */
             .taskbar {
                 padding: 10px 0;
             }
-        }
 
-        /* Centering content and cropping from sides on desktop */
-        @media (min-width: 769px) {
-            body {
-                justify-content: center;
-                align-items: center;
-                overflow: hidden;
+            /* Folder preview adjustments */
+            .folder-preview {
+                width: 36px;
+                padding: 1px;
+                margin-right: 12px;
             }
 
-            .iphone-frame {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                overflow: hidden;
+            .preview-icons span {
+                font-size: 18px;
+                margin: 1px;
+            }
+
+            /* Folder content adjustments */
+            .folder-content {
+                width: 200px;
+                padding: 15px;
+            }
+
+            .app-row .app-icon span {
+                font-size: 20px;
+            }
+
+            .app-row .app-icon p {
+                font-size: 10px;
+            }
+
+            /* Loader text */
+            #loadingText {
+                font-size: 1.5em;
+            }
+
+            /* Blur effect intensity */
+            .screen.blurred {
+                filter: blur(10px);
             }
         }
 
@@ -288,16 +312,27 @@
                     <p>Animal Clients</p>
                 </div>
             </div>
+
+            <!-- Taskbar -->
             <div class="taskbar">
-                <p>Taskbar Item 1</p>
-                <p>Taskbar Item 2</p>
-                <p>Taskbar Item 3</p>
+                <div class="app-icon" title="About">
+                    <span>🧰</span>
+                </div>
+                <div class="app-icon" title="Contact">
+                    <span>💌</span>
+                </div>
+                <div class="app-icon" title="Projects">
+                    <span>🌐</span>
+                </div>
+                <div class="app-icon" title="Moods">
+                    <span>📟</span>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Folder overlay -->
-    <div id="folderOverlay" class="folder-overlay">
+    <!-- Folder Overlay -->
+    <div class="folder-overlay" id="folderOverlay">
         <div class="folder-content">
             <h2>Animal Clients</h2>
             <div class="app-row">
@@ -313,41 +348,60 @@
             <div class="app-row">
                 <div class="app-icon">
                     <span>🐯</span>
-                    <p>Tiger Campaign</p>
+                    <p>Tiger Brand</p>
                 </div>
                 <div class="app-icon">
                     <span>🐸</span>
-                    <p>Frog Collab</p>
+                    <p>Frog Brand</p>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        // Loader functionality
-        window.addEventListener("load", function () {
-            setTimeout(() => {
-                document.getElementById("loader").classList.add("hidden");
-                document.getElementById("iphoneFrame").style.display = "block";
-            }, 2000);
-        });
+let loadingText = document.getElementById('loadingText');
+let dotsCount = 0;
+let maxDots = 3;
 
-        // Folder functionality
-        function openFolder(event) {
-            event.stopPropagation();
-            const folderOverlay = document.getElementById("folderOverlay");
-            folderOverlay.style.display = "flex";
-            document.querySelector('.screen').classList.add('blurred');
-        }
+function updateLoadingText() {
+    let dots = '.'.repeat(dotsCount);
+    loadingText.innerText = `Holding the world in your hands since 2k7${dots}`;
+    dotsCount = (dotsCount + 1) % (maxDots + 1); // Reset after maxDots
+}
 
-        // Close folder by clicking outside
-        document.addEventListener("click", function (event) {
-            const folderOverlay = document.getElementById("folderOverlay");
-            if (folderOverlay.style.display === "flex" && !folderOverlay.contains(event.target)) {
-                folderOverlay.style.display = "none";
-                document.querySelector('.screen').classList.remove('blurred');
-            }
-        });
+// Typing animation setup
+setInterval(updateLoadingText, 500); // Update every 500ms
+
+// Simulating loading delay
+setTimeout(() => {
+    document.getElementById('loader').classList.add('hidden');
+    document.getElementById('iphoneFrame').style.display = 'block'; // Show iPhone frame after loading
+}, 5000); // Adjust the delay as necessary
+
+// Open folder function
+function openFolder(event) {
+    event.stopPropagation(); // Prevent click event from bubbling up
+    document.getElementById('folderOverlay').style.display = 'flex';
+    document.querySelector('.screen').classList.add('blurred'); // Blur the screen
+}
+
+// Close folder function
+function closeFolder() {
+    document.getElementById('folderOverlay').style.display = 'none';
+    document.querySelector('.screen').classList.remove('blurred'); // Remove blur effect
+}
+
+// Close folder when clicking outside of it
+document.addEventListener('click', (event) => {
+    const folderOverlay = document.getElementById('folderOverlay');
+    const folderContent = document.querySelector('.folder-content');
+    
+    // Check if folder is open and click is outside the folder content
+    if (folderOverlay.style.display === 'flex' && !folderContent.contains(event.target)) {
+        closeFolder();
+    }
+});
+
     </script>
 </body>
 </html>
