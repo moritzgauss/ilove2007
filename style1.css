@@ -69,3 +69,110 @@ body {
 /* Taskbar */
 .taskbar {
     background: linear-gradient(to top, #d1d1d6, #fff);
+    padding: 15px 0;
+    display: flex;
+    border-radius: 10px 10px 0 0;
+    justify-content: space-evenly;
+    border-top: 1px solid #d1d1d6;
+}
+
+@font-face {
+    font-family: 'Raven Star Script'; /* Font for the loader text */
+    src: url('https://github.com/moritzgauss/iLove2007/raw/refs/heads/main/Raven-Star-Script.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Loader styles */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    opacity: 1;
+    transition: opacity 2s;
+}
+
+#loadingText {
+    font-family: 'Raven Star Script', cursive; /* Use the Raven font */
+    font-size: 2em;
+}
+
+.hidden {
+    opacity: 0;
+    transition: opacity 0.2s ease-out;
+    display: none;
+}
+
+/* Folder preview styling */
+.folder-preview {
+    background-color: transparent;
+    width: 48px; /* Match app icon dimensions */
+    padding: 2px; /* Less padding for a tighter fit */
+    margin-right: 18px;
+    border-radius: 10px;
+    opacity: 0.8;            
+    text-align: center;
+    cursor: pointer; /* Ensure it's clickable */
+    transition: transform 0.2s ease; /* Optional: Animation effect */
+}
+
+.preview-icons {
+    display: grid; /* 2x2 layout */
+    grid-template-columns: repeat(2, 1fr);
+    padding-right: 6px; /* Less padding for a tighter fit */
+    transition: text-shadow 0.3s ease, opacity 0.3s ease;
+    justify-items: center;
+}
+.preview-icons :hover {
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    opacity: 0.8;
+}
+
+.preview-icons span {
+    display: inline-block;
+    font-size: 24px; /* Larger icon size */
+    margin: 2px;
+}
+
+/* New blur container */
+.blur-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/* Folder overlay */
+.folder-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0); /* Transparent background */
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+}
+
+/* When the folder is open, apply the blur effect to the blur-container */
+.blur-container.active {
+ -webkit-backdrop-filter: blur(20px); /* Safari compatibility */
+    backdrop-filter: blur(20px); /* Standard */}
+
+/* Folder content */
+.folder-content {
+    background-color: white;
+    width: 250px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    animation: scaleIn 0.3s ease-in-out;
+}
