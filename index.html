@@ -187,32 +187,6 @@
             }
         }
 
-        /* RESPONSIVENESS */
-        @media (max-width: 768px) {
-            .iphone-frame {
-                width: 90vw;
-                height: auto;
-            }
-            .screen {
-                top: 15vw;
-                left: 25vw;
-                width: 45vw;
-                height: auto;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .iphone-frame {
-                width: 60vw;
-                height: auto;
-            }
-            .screen {
-                top: 12vw;
-                left: 10vw;
-                width: 40vw;
-                height: auto;
-            }
-        }
     </style>
 </head>
 <body>
@@ -293,60 +267,39 @@
             <div class="app-row">
                 <div class="app-icon">
                     <span>🐯</span>
-                    <p>Tiger Brand</p>
+                    <p>Tiger Campaign</p>
                 </div>
                 <div class="app-icon">
                     <span>🐸</span>
-                    <p>Frog Brand</p>
+                    <p>Frog Collab</p>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        let loadingText = document.getElementById('loadingText');
-        let dotsCount = 0;
-        let maxDots = 3;
+        // Loader functionality
+        window.addEventListener("load", function () {
+            setTimeout(() => {
+                document.getElementById("loader").classList.add("hidden");
+                document.getElementById("iphoneFrame").style.display = "block";
+            }, 2000);
+        });
 
-        function updateLoadingText() {
-            let dots = '.'.repeat(dotsCount);
-            loadingText.innerText = `Holding the world in your hands since 2k7${dots}`;
-            dotsCount = (dotsCount + 1) % (maxDots + 1); // Reset after maxDots
-        }
-
-        // Typing animation setup
-        setInterval(updateLoadingText, 500); // Update every 500ms
-
-        // Simulating loading delay
-        setTimeout(() => {
-            document.getElementById('loader').classList.add('hidden');
-            document.getElementById('iphoneFrame').style.display = 'block'; // Show iPhone frame after loading
-        }, 5000); // Adjust the delay as necessary
-
-        // Open folder function
+        // Folder functionality
         function openFolder(event) {
-            event.stopPropagation(); // Prevent click event from bubbling up
-            document.getElementById('folderOverlay').style.display = 'flex';
-            document.querySelector('.screen').classList.add('blurred'); // Blur the screen
+            event.stopPropagation();
+            const folderOverlay = document.getElementById("folderOverlay");
+            folderOverlay.style.display = "flex";
+            document.querySelector('.screen').classList.add('blurred');
         }
 
-        // Close folder function
-        function closeFolder() {
-            document.getElementById('folderOverlay').style.display = 'none';
-            document.querySelector('.screen').classList.remove('blurred'); // Remove blur effect
-        }
-
-        // Close folder when clicking outside of it
-        document.addEventListener('click', (event) => {
-            const folderOverlay = document.getElementById('folderOverlay');
-            const folderContent = document.querySelector('.folder-content');
-
-            // Check if the folder overlay is displayed
-            if (folderOverlay.style.display === 'flex') {
-                // If the click is outside the folder content, close the folder
-                if (!folderContent.contains(event.target) && folderOverlay.contains(event.target)) {
-                    closeFolder();
-                }
+        // Close folder by clicking outside
+        document.addEventListener("click", function (event) {
+            const folderOverlay = document.getElementById("folderOverlay");
+            if (folderOverlay.style.display === "flex" && !folderOverlay.contains(event.target)) {
+                folderOverlay.style.display = "none";
+                document.querySelector('.screen').classList.remove('blurred');
             }
         });
     </script>
