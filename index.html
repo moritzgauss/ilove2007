@@ -20,7 +20,7 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            overflow: hidden;
+            overflow: hidden; /* Prevent scrolling */
         }
 
         .iphone-frame {
@@ -31,13 +31,15 @@
             position: relative;
             height: 900px;
             width: 1440px;
-            display: none; /* Hide initially */
+            display: flex; /* Allow children to be positioned */
+            overflow: hidden; /* Hide excess on the sides */
         }
 
         .screen {
             position: absolute;
             top: 167px;
-            left: 539px;
+            left: 50%; /* Center the screen horizontally */
+            transform: translateX(-50%); /* Adjust position back to center */
             height: 538px;
             width: 363px;
             background-color: transparent;
@@ -186,7 +188,6 @@
                 transform: scale(1);
             }
         }
-
     </style>
 </head>
 <body>
@@ -267,40 +268,44 @@
             <div class="app-row">
                 <div class="app-icon">
                     <span>🐯</span>
-                    <p>Tiger Campaign</p>
+                    <p>Tiger Brand</p>
                 </div>
                 <div class="app-icon">
                     <span>🐸</span>
-                    <p>Frog Collab</p>
+                    <p>Frog Brand</p>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        // Loader functionality
-        window.addEventListener("load", function () {
-            setTimeout(() => {
-                document.getElementById("loader").classList.add("hidden");
-                document.getElementById("iphoneFrame").style.display = "block";
-            }, 2000);
-        });
+        const loader = document.getElementById('loader');
+        const iphoneFrame = document.getElementById('iphoneFrame');
+        const folderOverlay = document.getElementById('folderOverlay');
 
-        // Folder functionality
+        // Simulate loading
+        window.onload = function () {
+            loader.style.opacity = '0';
+            setTimeout(() => {
+                loader.style.display = 'none';
+            }, 2000); // Match the transition time
+        };
+
         function openFolder(event) {
-            event.stopPropagation();
-            const folderOverlay = document.getElementById("folderOverlay");
-            folderOverlay.style.display = "flex";
-            document.querySelector('.screen').classList.add('blurred');
+            event.stopPropagation(); // Prevent triggering the click on the screen
+            folderOverlay.style.display = 'flex'; // Show the folder overlay
+            iphoneFrame.querySelector('.screen').classList.add('blurred'); // Blur the screen
         }
 
-        // Close folder by clicking outside
-        document.addEventListener("click", function (event) {
-            const folderOverlay = document.getElementById("folderOverlay");
-            if (folderOverlay.style.display === "flex" && !folderOverlay.contains(event.target)) {
-                folderOverlay.style.display = "none";
-                document.querySelector('.screen').classList.remove('blurred');
-            }
+        // Close folder on overlay click
+        folderOverlay.addEventListener('click', () => {
+            folderOverlay.style.display = 'none';
+            iphoneFrame.querySelector('.screen').classList.remove('blurred'); // Remove blur
+        });
+
+        // Prevent closing when clicking inside the folder
+        folderOverlay.querySelector('.folder-content').addEventListener('click', (e) => {
+            e.stopPropagation();
         });
     </script>
 </body>
