@@ -4,18 +4,195 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>iPhone 2007 Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .iphone-frame {
+            background-image: url('https://raw.githubusercontent.com/moritzgauss/iLove2007/refs/heads/main/iphone12007.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            position: relative;
+            height: 900px;
+            width: 1440px;
+        }
+
+        .screen {
+            position: absolute;
+            top: 167px;
+            left: 539px;
+            height: 538px;
+            width: 363px;
+            background-color: transparent;
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: filter 0.3s ease;
+        }
+
+        .apps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            justify-items: center;
+            padding: 20px 0;
+        }
+
+        .app-icon {
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .app-icon span {
+            font-size: 48px;
+            transition: text-shadow 0.3s ease, opacity 0.3s ease;
+        }
+
+        .app-icon span:hover {
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+            opacity: 0.8;
+        }
+
+        .app-icon p {
+            margin-top: 5px;
+            font-size: 16px;
+            color: #333;
+        }
+
+        /* Taskbar */
+        .taskbar {
+            background: linear-gradient(to top, #d1d1d6, #fff);
+            padding: 15px 0;
+            display: flex;
+            border-radius: 10px 10px 0 0;
+            justify-content: space-evenly;
+            border-top: 1px solid #d1d1d6;
+        }
+
+        @font-face {
+    font-family: 'Raven Star Script'; /* Font for the loader text */
+    src: url('https://github.com/moritzgauss/iLove2007/raw/refs/heads/main/Raven-Star-Script.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Loader styles */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    opacity: 1;
+    transition: opacity 2s;
+}
+
+#loadingText {
+    font-family: 'Raven Star Script', cursive; /* Use the Raven font */
+    font-size: 2em;
+}
+
+.hidden {
+    opacity: 0;
+    transition: opacity 0.2s ease-out;
+    display: none;
+}
+
+        /* Folder preview styling */
+        .folder-preview {
+            background-color: transparent;
+            width: 48px;
+            padding: 2px;
+            margin-right: 18px;
+            border-radius: 10px;
+            opacity: 0.8;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .preview-icons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            padding-right: 6px;
+            justify-items: center;
+        }
+
+        .preview-icons span {
+            font-size: 24px;
+            margin: 2px;
+        }
+
+        /* Folder overlay */
+        .folder-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+        }
+
+        .screen.blurred {
+            filter: blur(15px);
+        }
+
+        .folder-content {
+            background-color: white;
+            width: 250px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            animation: scaleIn 0.3s ease-in-out;
+        }
+
+        .app-row {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        @keyframes scaleIn {
+            0% {
+                transform: scale(0);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Loader -->
     <div id="loader" class="overlay">
-        <p id="loadingText">Loading...</p>
+        <p id="loadingText">Going back to 2007...</p>
     </div>
 
     <div class="iphone-frame">
-        <div class="blur-container"> <!-- New container for blur effect -->
-            <div class="screen">
+        <div class="screen"> <!-- The screen container to blur -->
             <!-- App icons with subtitles -->
             <div class="apps">
                 <div class="app-icon" title="Balenciaga Campaign">
@@ -107,6 +284,41 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        window.onload = function() {
+    const loader = document.getElementById('loader');
+    const loadingText = document.getElementById('loadingText');
+
+    let typingEffect = setInterval(() => {
+        if (loadingText.textContent.length < 10) {
+            loadingText.textContent += ".";
+        } else {
+            loadingText.textContent = "Loading";
+        }
+    }, 300);
+
+    // Fading out loader after 2 seconds
+    setTimeout(() => {
+        clearInterval(typingEffect);
+        loader.classList.add('hidden'); // Hide loader after 2 seconds
+    }, 2000);
+};
+
+        function openFolder(event) {
+            event.preventDefault();
+            const folderOverlay = document.getElementById("folderOverlay");
+            const screen = document.querySelector('.screen');
+            folderOverlay.style.display = "flex";
+            screen.classList.add("blurred");
+        }
+
+        document.getElementById("folderOverlay").addEventListener("click", function(event) {
+            const screen = document.querySelector('.screen');
+            if (event.target === this) {
+                this.style.display = "none";
+                screen.classList.remove("blurred");
+            }
+        });
+    </script>
 </body>
 </html>
