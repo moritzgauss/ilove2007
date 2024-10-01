@@ -186,21 +186,28 @@
                 transform: scale(1);
             }
         }
+            /* Loader text */
+            #loadingText {
+                font-size: 1.5em;
+            }
 
+            /* Blur effect intensity */
+            .screen.blurred {
+                filter: blur(10px);
+            }
         /* RESPONSIVENESS */
         @media (max-width: 480px) {
-            .iphone-frame {
-                width: 960px;
-                height: 600px;
-            }
-.screen {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 192px;
-    height: 285px;
-}
-            }
+    .iphone-frame {
+        width: 960px;
+        height: 600px;
+    }
+    .screen {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 192px;
+        height: 285px;
+    }
 
             /* Scale down app icons */
             .app-icon span {
@@ -248,17 +255,53 @@
             .app-row .app-icon p {
                 font-size: 10px;
             }
+}
 
-            /* Loader text */
-            #loadingText {
-                font-size: 1.5em;
-            }
-
-            /* Blur effect intensity */
-            .screen.blurred {
-                filter: blur(10px);
-            }
-        }
+@media (min-width: 768px) and (max-width: 1024px) {
+    .iphone-frame {
+        width: 1080px;
+        height: 675px;
+    }
+    .screen {
+        top: 125px; /* Adjust as needed for proper centering */
+        left: 407px;
+        width: 272px;
+        height: 403px;
+    }
+    .taskbar {
+        padding: 11px 0;
+        border-radius: 8px 8px 0 0;
+    }
+    .app-icon span {
+        font-size: 36px; /* Adjusted for tablet size */
+    }
+    .app-icon p {
+        font-size: 14px;
+    }
+    .apps {
+        gap: 15px;
+        padding: 15px 0;
+    }
+    .folder-preview {
+        width: 36px;
+        padding: 1px;
+        margin-right: 12px;
+    }
+    .preview-icons span {
+        font-size: 18px;
+        margin: 1px;
+    }
+    .folder-content {
+        width: 220px;
+        padding: 15px;
+    }
+    .app-row .app-icon span {
+        font-size: 28px;
+    }
+    .app-row .app-icon p {
+        font-size: 12px;
+    }
+}
 
     </style>
 </head>
