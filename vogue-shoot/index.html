@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vogue Campaign</title> <!-- Updated Title -->
+    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Apple_Computer_Logo_rainbow.svg/1000px-Apple_Computer_Logo_rainbow.svg.png" type="image/png"> <!-- Favicon -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .iphone-frame {
+            background-image: url('https://raw.githubusercontent.com/moritzgauss/iLove2007/refs/heads/main/material/iphone12007.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            position: relative;
+            height: 900px;
+            width: 1440px;
+        }
+
+        .screen {
+            position: absolute;
+            top: 167px; /* Keep the same top position */
+            left: 539px; /* Keep the same left position */
+            height: 538px; /* Keep the same height */
+            width: 363px; /* Keep the same width */
+            background-color: transparent;
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            text-align: left;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 14px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* RESPONSIVENESS */
+        @media (max-width: 480px) {
+            .iphone-frame {
+                width: 960px;
+                height: 600px;
+            }
+
+            .screen {
+            position: absolute;
+        left: 50%;
+        top: 110px; /* Adjust this value to move the screen vertically */
+        transform: translateX(-50%);
+        width: 242px;
+        height: 360px;
+        padding: 4px;
+            }
+
+            h1 {
+                font-size: 18px;
+            }
+
+            h2 {
+                font-size: 14px;
+            }
+
+            p {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="iphone-frame" id="iphoneFrame">
+        <div class="screen">
+            <h1>Vogue Campaign</h1>
+            <h2>Latest Project</h2>
+            <p>Our work with Vogue, showcasing high-end fashion photography.</p>
+            <img src="https://github.com/moritzgauss/ilove2007/raw/main/material/IMG_4891.jpeg" alt="Vogue Shoot Image">
+        </div>
+    </div>
+
+</body>
+</html>
