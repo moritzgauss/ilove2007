@@ -31,7 +31,6 @@
             position: relative;
             height: 900px;
             width: 1440px;
-            display: none; /* Hide initially */
         }
 
         .screen {
@@ -196,7 +195,7 @@
                 filter: blur(10px);
             }
         /* RESPONSIVENESS */
-        @media (max-width: 480px) {
+@media (max-width: 480px) {
     .iphone-frame {
         width: 960px;
         height: 600px;
@@ -204,33 +203,33 @@
     .screen {
         position: absolute;
         left: 50%;
+        top: 50px; /* Adjust this value to move the screen vertically */
         transform: translateX(-50%);
         width: 240px;
         height: 357px;
     }
-            /* Taskbar adjustments */
-            .taskbar {
+
+    /* Taskbar adjustments */
+    .taskbar {
         padding: 11px 0;
         border-radius: 8px 8px 0 0;
-            }
-            
-            /* Scale down app icons */
-            .app-icon span {
-                font-size: 30px;
-            }
+    }
+    
+    /* Scale down app icons */
+    .app-icon span {
+        font-size: 30px;
+    }
 
-            /* Scale down app text */
-            .app-icon p {
-                font-size: 11px;
-                margin-top: 3px;
-            }
+    /* Scale down app text */
+    .app-icon p {
+        font-size: 11px;
+        margin-top: 3px;
+    }
 
-            .apps {
-                gap: 12px;
-                padding: 10px 0;
-            }
-
-
+    .apps {
+        gap: 12px;
+        padding: 10px 0;
+    }
 
             /* Folder preview adjustments */
             .folder-preview {
