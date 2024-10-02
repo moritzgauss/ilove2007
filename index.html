@@ -111,7 +111,7 @@
 
         #loadingText {
             font-family: 'DM Sans', sans-serif;
-            font-size: 1.2em;
+            font-size: 1em;
             text-align: center; /* Center the text */
         }
 
@@ -293,7 +293,7 @@ h2 {
 <body>
     <!-- Loader -->
     <div id="loader" class="overlay">
-        <p id="loadingText">Holding the world in your hands since 2k7</p>
+        <p id="loadingText">Holding the iWorld in your hands since 2007</p>
     </div>
 
     <div class="iphone-frame" id="iphoneFrame">
@@ -396,7 +396,7 @@ let maxDots = 3;
 
 function updateLoadingText() {
     let dots = '.'.repeat(dotsCount);
-    loadingText.innerText = `Holding the world in your hands since 2k7${dots}`;
+    loadingText.innerText = `Holding the iWorld in your hands since 2007${dots}`;
     dotsCount = (dotsCount + 1) % (maxDots + 1); // Reset after maxDots
 }
 
